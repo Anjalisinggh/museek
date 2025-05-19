@@ -1,76 +1,101 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-body{
-    background-color: antiquewhite;
+
+body {
+    background-color: #F5E9DA; /* Vintage Cream */
+    font-family: 'Varela Round', sans-serif;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
 }
-nav{
+
+nav {
     font-family: 'Ubuntu', sans-serif;
-    
 }
-nav ul{
-   list-style-type: none;
-   height: 65px;
-   background-color: #efc8e9;
+
+nav ul {
+    list-style-type: none;
+    height: 65px;
+    background-color: #9A8C98; /* Dusty Mauve */
     display: flex;
-    color: white;
-   
-   align-items: center;
+    color: #4A3F35; /* Vintage Brown */
+    align-items: center;
 }
-nav ul li{
+
+nav ul li {
     padding: 20px;
     font-size: 1.2em;
-    color: #996262;
+    color: #4A3F35;
     text-decoration: none;
     transition: color 0.3s ease;
 }
+
+nav ul li:hover {
+    color: #D8B4A0; /* Faded Peach on hover */
+}
+
 .brand img {
     height: 55px;
     padding: 0 8px;
     width: auto;
 }
-.brand{
+
+.brand {
     display: flex;
     align-items: center;
     font-weight: bolder;
     margin-left: 20px;
     font-size: 1.5em;
-  
+    color: #4A3F35;
 }
-nav ul li:hover {
-    color: #ffd6d6; /* Light pink on hover */
-}
-.container{
+
+.container {
     display: flex;
-    flex-direction: column;
+    margin: 23px auto;
     justify-content: center;
+    background-color: #BFA5A0; /* Antique Rose */
+    color: #4A3F35;
+    width: 70%;
     align-items: center;
-    min-height: 75vh;
+    min-height: 72vh;
+    font-family: Varelsa Round, sans-serif;
+    padding: 20px;
+    border-radius: 15px;
+    background-image: url('albumm.jpg');
 }
-.bottom{
-    background-color: #efc8e9;
-    color: rgb(237, 243, 241);
-    height: 130px;
+
+.bottom {
+    background-color: #A26769; /* Muted Rosewood */
+    color: #F5E9DA;
+    height: 70px;
     bottom: 0;
     display: flex;
+    padding: 10px;
     justify-content: center;
-    
     flex-direction: column;
     align-items: center;
     position: sticky;
 }
+
 #myProgressBar {
     width: 100%;
-    background-color: #ddd;
+    background-color: #C9ADA7; /* Soft Rose Taupe */
     border-radius: 5px;
     margin-top: 20px;
 }
-.icons{
-   margin-top: 10px;
+
+.icons {
+    margin-top: 10px;
 }
-.icons i{
+
+.icons i {
     cursor: pointer;
+    color: #4A3F35;
+    transition: color 0.3s ease;
+}
+
+.icons i:hover {
+    color: #D8B4A0;
 }
