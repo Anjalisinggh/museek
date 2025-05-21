@@ -54,11 +54,12 @@ nav ul li:hover {
 .container {
     display: flex;
     margin: 23px auto;
-    justify-content: center;
+    ;
+ flex-direction: column;
     background-color: #BFA5A0; /* Antique Rose */
     color: #4A3F35;
     width: 70%;
-    align-items: center;
+    flex-wrap: wrap;
     min-height: 72vh;
     font-family: Varelsa Round, sans-serif;
     padding: 20px;
@@ -79,11 +80,12 @@ nav ul li:hover {
     position: sticky;
 }
 
-#myProgressBar {
+#myProgressbar {
     width: 100%;
     background-color: #C9ADA7; /* Soft Rose Taupe */
     border-radius: 5px;
     margin-top: 20px;
+    margin: 5px ;
 }
 
 .icons {
@@ -98,4 +100,55 @@ nav ul li:hover {
 
 .icons i:hover {
     color: #D8B4A0;
+}
+.songItemContainer {
+   
+    margin-top: 30px;
+    padding: 10px;
+   
+    
+}
+
+.songItem {
+    display: flex;
+    height: 50px;
+    align-items: center;
+    padding: 10px 15px;
+   margin: 12px 0;
+   justify-content: space-between;
+   align-items: center;
+   flex-shrink: 0   ;
+   border-radius: 20px;
+   overflow: hidden;
+    background-color: #d2bcb2; /* Light Beige */
+    color: #4A3F35;
+}
+.songItem img {
+    width: 50px;
+    height: 50px;
+    margin: 23px 0;
+    border-radius: 5px;
+    border-radius: 10px;
+}
+.timeStamp {
+    font-size: 0.8em;
+    color: #4A3F35;
+    margin-left: 10px;
+    
+}
+.timeStamp i{
+    cursor: pointer;
+    
+}
+.songInfo{
+    position: absolute;
+    left: 0;
+  
+}
+.songListPlay{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: auto;
 }
