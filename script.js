@@ -8,7 +8,6 @@ let myProgressBar = document.getElementById("myProgressBar");
 let gif = document.getElementById("gif");
 let masterSongName = document.getElementById("masterSongName");
 let songItems = Array.from(document.getElementsByClassName("songItem"));
-let audio =document.getElementById("audio");
 
 // Song list
 let songs = [
@@ -56,30 +55,22 @@ let songs = [
   },
 ];
 
-audioElement.addEventListener("ended", () => {
-    songIndex = (songIndex + 1) % songs.length;
-    audioElement.src = songs[songIndex].filePath;
-    masterSongName.innerText = songs[songIndex].songName;
-    audioElement.currentTime = 0;
-    audioElement.play();
-    })
 // Populate song UI
 songItems.forEach((element, i) => {
   element.querySelector("img").src = songs[i].coverPath;
   element.querySelector(".songName").innerText = songs[i].songName;
-  let playButton = element.querySelector(".songItemPlay");
-  playButton.setAttribute("data-index", i); // important
+  element.querySelector(".songItemPlay").setAttribute("data-index", i);
 });
 
 // Reset all play icons
 const makeAllPlays = () => {
-  document.querySelectorAll(".songItemPlay").forEach((el) => {
-    el.classList.remove("fa-pause-circle");
-    el.classList.add("fa-play-circle");
+  document.querySelectorAll(".songItemPlay").forEach((element) => {
+    element.classList.remove("fa-pause-circle");
+    element.classList.add("fa-play-circle");
   });
 };
 
-// Update current song icon
+// Update current song play icon
 const updateCurrentSongPlayIcon = () => {
   makeAllPlays();
   let currentPlayBtn = document.querySelector(`.songItemPlay[data-index="${songIndex}"]`);
@@ -89,23 +80,21 @@ const updateCurrentSongPlayIcon = () => {
   }
 };
 
-// Load & Play a Song
+// Load & Play Song
 const loadAndPlaySong = (index) => {
   if (index >= 0 && index < songs.length) {
     songIndex = index;
     audioElement.src = songs[songIndex].filePath;
-    if (masterSongName) {
-      masterSongName.innerText = songs[songIndex].songName;
-    }
+    masterSongName.innerText = songs[songIndex].songName;
     audioElement.currentTime = 0;
     audioElement.play();
-    masterPlay.classList.replace("fa-play-circle", "fa-pause-circle");
     gif.style.opacity = 1;
+    masterPlay.classList.replace("fa-play-circle", "fa-pause-circle");
     updateCurrentSongPlayIcon();
-  } 
+  }
 };
 
-// Master play/pause
+// Master play/pause button
 masterPlay.addEventListener("click", () => {
   if (audioElement.paused || audioElement.currentTime <= 0) {
     audioElement.play();
@@ -120,28 +109,13 @@ masterPlay.addEventListener("click", () => {
   }
 });
 
-// Song progress
-audioElement.addEventListener("timeupdate", () => {
-  const progress = parseInt((audioElement.currentTime / audioElement.duration) * 100);
-  myProgressBar.value = progress || 0;
-});
-
-myProgressBar.addEventListener("change", () => {
-  audioElement.currentTime = (myProgressBar.value * audioElement.duration) / 100;
-});
-
-// Song end
-audioElement.addEventListener("ended", () => {
-  masterPlay.classList.replace("fa-pause-circle", "fa-play-circle");
-  gif.style.opacity = 0;
-  makeAllPlays();
-});
-
-// SongItem play clicks
+// Individual song play buttons
 document.querySelectorAll(".songItemPlay").forEach((element) => {
   element.addEventListener("click", (e) => {
-    let clickedIndex = parseInt(e.target.getAttribute("data-index"));
+    const clickedIndex = parseInt(e.target.getAttribute("data-index"));
+
     if (clickedIndex === songIndex && !audioElement.paused) {
+      // Pause current song
       audioElement.pause();
       e.target.classList.remove("fa-pause-circle");
       e.target.classList.add("fa-play-circle");
@@ -153,13 +127,30 @@ document.querySelectorAll(".songItemPlay").forEach((element) => {
   });
 });
 
-// Next
+// Update song progress bar
+audioElement.addEventListener("timeupdate", () => {
+  const progress = parseInt((audioElement.currentTime / audioElement.duration) * 100);
+  myProgressBar.value = progress || 0;
+});
+
+// Seek in song
+myProgressBar.addEventListener("change", () => {
+  audioElement.currentTime = (myProgressBar.value * audioElement.duration) / 100;
+});
+
+// Song ends – play next
+audioElement.addEventListener("ended", () => {
+  let nextIndex = (songIndex + 1) % songs.length;
+  loadAndPlaySong(nextIndex);
+});
+
+// Next button
 document.getElementById("next").addEventListener("click", () => {
   let nextIndex = (songIndex + 1) % songs.length;
   loadAndPlaySong(nextIndex);
 });
 
-// Previous
+// Previous button
 document.getElementById("previous").addEventListener("click", () => {
   let prevIndex = (songIndex - 1 + songs.length) % songs.length;
   loadAndPlaySong(prevIndex);
