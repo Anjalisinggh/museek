@@ -150,3 +150,18 @@ nav ul li:hover {
    opacity: 0;
     transition: opacity 0.8s ease;
 }
+nav ul li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul li a:visited,
+nav ul li a:focus,
+nav ul li a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul li a:hover {
+  color: #d2bcb2; /* This is your orange hover color */
+}
