@@ -145,10 +145,8 @@ nav ul li:hover {
     left: 0;
   
 }
-.songListPlay{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    margin-left: 10px;
-    margin-right: auto;
+
+.songInfo img{
+   opacity: 0;
+    transition: opacity 0.8s ease;
 }
