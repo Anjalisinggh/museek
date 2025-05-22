@@ -99,11 +99,15 @@ masterPlay.addEventListener("click", () => {
   if (audioElement.paused || audioElement.currentTime <= 0) {
     audioElement.play();
     masterPlay.classList.replace("fa-play-circle", "fa-pause-circle");
+ 
+
     gif.style.opacity = 1;
     updateCurrentSongPlayIcon();
   } else {
     audioElement.pause();
     masterPlay.classList.replace("fa-pause-circle", "fa-play-circle");
+  
+
     gif.style.opacity = 0;
     makeAllPlays();
   }
